@@ -10,7 +10,7 @@ const Card = (props) => {
   return (
 
     // weather details of each day of the week
-    <div className={styles.card}>
+    <div className={styles.card} onClick={props.onClick}>
         <div className={styles.row}>{day}</div>
         <div  className={styles.row}><span> {Math.floor(props?.temp.max)}° </span>&nbsp; {Math.floor(props?.temp.min)}°</div>
         <div  className={styles.row}>

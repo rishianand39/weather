@@ -43,33 +43,37 @@ const Home = () => {
       );
       let data2 = await res2.json();
       setWeekdata(data2.daily);
-      setCurrentdata(data2.current);
+      setCurrentdata(data2.daily[0]);
       setGraphdata(data2);
     } catch (error) {
       console.log("err:", error);
     }
   }
 
+  function humanReadableTime(data){
+    const milliseconds = data * 1000;
+    const dateObject = new Date(milliseconds);
+    const readble = dateObject.toLocaleString();
+    console.log(readble)
+    return readble.split(",")[1]
+  }
+
   // LOCATION
   function getlocation() {
     if ("geolocation" in navigator) {
-      // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
         function success(position) {
-          // for when getting location is a success
           setLatlon({
             lat: position.coords.latitude,
             lon: position.coords.longitude,
           });
         },
         function error(error_message) {
-          // for when getting location results in an error
           console.error(`An error has occured while retrieving
         location ${error_message}`);
         }
       );
     } else {
-      // geolocation is not supported
       alert("your browser does not support geolocation");
     }
   }
@@ -83,6 +87,11 @@ const Home = () => {
   useEffect(() => {
     fetchByCoord();
   }, [latlong]);
+  console.log(currentdata);
+
+  const handleCardClick = (data) => {
+    setCurrentdata(data);
+  };
 
   return (
     <div className={styles.container}>
@@ -93,7 +102,13 @@ const Home = () => {
       {weekdata && (
         <div className={styles.cards}>
           {weekdata.slice(0, 7)?.map((data) => {
-            return <Card key={data.dt} {...data} />;
+            return (
+              <Card
+                key={data.dt}
+                {...data}
+                onClick={() => handleCardClick(data)}
+              />
+            );
           })}
         </div>
       )}
@@ -102,7 +117,7 @@ const Home = () => {
       {currentdata && (
         <div className={styles.current__day__desc}>
           <div className={styles.current__tem}>
-            {Math.floor(currentdata?.temp)}° C{" "}
+            {Math.floor(currentdata?.temp.day)}° C{" "}
             <img src={link} alt="" className={styles.icon} />
           </div>
 
@@ -119,9 +134,21 @@ const Home = () => {
               <div>{currentdata?.humidity}%</div>
             </div>
           </div>
-          {/* <div className={styles.mountain__like__container}>
-            mountain__like__container
-          </div> */}
+          <div className={styles.mountain__like__container}>
+          <div className={styles.sunrise__sunset}>
+            <div>
+              <div>Sunrise</div>
+              <div>{humanReadableTime(currentdata?.sunrise)} AM</div>
+            </div>
+            <div>
+              <div>Sunset</div>
+              <div>{humanReadableTime(currentdata?.sunset)} PM</div>
+            </div>
+          </div>
+          <div className={styles.sunrise__graph}>
+            <img src="https://user-images.githubusercontent.com/97423069/192140807-bcf08b6f-3d17-4971-a087-51db4ca4e338.png" alt="" />
+          </div>
+          </div>
         </div>
       )}
     </div>
