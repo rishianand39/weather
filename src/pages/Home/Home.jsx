@@ -61,7 +61,6 @@ const Home = () => {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
           });
-          console.log(position);
         },
         function error(error_message) {
           // for when getting location results in an error
