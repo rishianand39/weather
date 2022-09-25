@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+/* location name div */
+.location__name{
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+}
+
+/* description div */
+.weather__desc{
+    display: flex;
+}
+.weather__desc>:nth-child(1){
+  font-size: 1.2rem;
+  padding: 0 5px;
+}
+.weather__desc>:nth-child(2){
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}

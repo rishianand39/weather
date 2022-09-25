@@ -1,0 +1,38 @@
+.card{
+    border: 2px solid white;
+    width: 100px;
+    height: 150px;
+    margin-right: 5px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    
+}
+@media  screen and (min-width: 768px) {
+    .card{
+        width:150px
+    }
+}
+.card:hover{
+    border: 2px solid rgb(98, 98, 170);
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-weight: bold;
+    
+}
+span{
+    font-size: 1.5rem;
+}
+.icon{
+    font-size: 1.5rem;
+}
+.row:last-child{
+    color: rgb(119, 116, 116);
+    font-weight: normal;
+}

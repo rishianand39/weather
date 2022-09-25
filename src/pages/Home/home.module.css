@@ -1,0 +1,49 @@
+.container{
+    width: 70vw;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+}
+
+/* seven day card */
+
+.cards{
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    overflow-x:scroll;
+}
+
+
+/* current day container here */
+.current__day__desc{
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+.current__day__desc>div:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+}
+.current__tem{
+    font-size: 5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.icon{
+    font-size: 2rem;
+    color: burlywood;
+    margin-left: 20px;
+}
+.pressure, .humidity{
+    background-color: #d4e4f3;
+    width: 200px;
+    padding: 10px;
+}
+.pressure>div:first-child, .humidity>div:first-child{
+ font-weight: bold;
+ margin-bottom: 5px;
+}
