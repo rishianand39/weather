@@ -11,14 +11,14 @@ import {
 } from "recharts";
 import { useEffect, useState } from "react";
 
-export default function Graph(props) {
+
+export default function Graph({graphdata}) {
   const [data, setData] = useState(null);
 
 
   // adding time key in graph data
   function addDays() {
-    let data = props?.hourly?.slice(0, 15);
-    data?.map((data) => {
+    graphdata?.map((data) => {
       const milliseconds = data.dt * 1000;
       const dateObject = new Date(milliseconds);
       const day = dateObject.toLocaleString("en-US", { timeZone: "UTC" });
@@ -29,13 +29,14 @@ export default function Graph(props) {
 
   useEffect(() => {
     addDays();
-  }, [props]);
+  }, [graphdata]);
 
 
+  
   return (
     <div className={styles.graph__container}>
       <ResponsiveContainer>
-        <LineChart data={data}>
+        <LineChart data={graphdata}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="day" padding={{ left: 10, right: 30 }} />
           <YAxis />
